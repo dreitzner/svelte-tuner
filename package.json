@@ -4,7 +4,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public",
+    "start": "sirv public --http2 --key local-key.pem --cert local-cert.pem",
     "validate": "svelte-check"
   },
   "devDependencies": {
@@ -14,6 +14,7 @@
     "@tsconfig/svelte": "^1.0.0",
     "rollup": "^2.3.4",
     "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-serve": "^1.0.3",
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-terser": "^5.1.2",

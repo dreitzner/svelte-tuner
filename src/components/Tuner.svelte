@@ -1,14 +1,17 @@
 <script type="typescript">
   import { onMount, beforeUpdate } from "svelte";
-  import { initUserAudio, getDataArray } from "../services/audio";
+  import { initUserAudio, getDataArray, stopUserAudio } from "../services/audio";
+  import SegmentDisplay from './SegmentDisplay.svelte';
 
   let canvas: HTMLCanvasElement;
   let canvasCtx: CanvasRenderingContext2D;
-  let analyserNode: AnalyserNode;
+  let analyserNode: AnalyserNode = null;
   let bufferLength: number;
 
   const draw = () => {
-    const dataArray: Float32Array = getDataArray(analyserNode);
+		if (!analyserNode) return;
+		requestAnimationFrame(draw);
+		const dataArray: Float32Array = getDataArray(analyserNode);
     //Draw black background
     canvasCtx.fillStyle = "rgb(0, 0, 0)";
     canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
@@ -34,17 +37,46 @@
     canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
   });
 
-  const start = async () => {
-    ({ analyserNode, bufferLength } = await initUserAudio());
-  };
-
-  beforeUpdate(() => {
-    if (!analyserNode) return;
-    draw();
-  });
+  const click = async () => {
+		if (analyserNode) return reset();
+		({ analyserNode, bufferLength } = await initUserAudio());
+		draw();
+	};
+	
+	const reset = () => {
+		analyserNode = null;
+    canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+		stopUserAudio();
+	}
 </script>
 
+<main>
+  <h1>Svelte Tuner</h1>
+  
+  <SegmentDisplay />
+	
+	<button on:click={click}>
+		{#if analyserNode}
+			stop
+		{:else}
+			start
+		{/if}
+	</button>
+	
+	<div class="container">
+		<canvas bind:this={canvas} />
+	</div>
+</main>
+
 <style>
+  main {
+    position: relative;
+    max-width: 56em;
+    background-color: white;
+    padding: 2em;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
   .container {
     position: relative;
   }
@@ -53,15 +85,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 50vh;
   }
 </style>
-
-<h1>Svelte Tuner</h1>
-
-<button on:click={start}>start</button>
-
-<div class="container">
-  <canvas bind:this={canvas} />
-</div>

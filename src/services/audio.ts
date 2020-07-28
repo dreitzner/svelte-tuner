@@ -6,6 +6,7 @@ interface IinitUserAudio {
 let analyserNode: AnalyserNode;
 let dataArray: Float32Array;
 let bufferLength: number;
+let stream: MediaStream;
 
 const getMedia = async (): Promise<MediaStream> => {
     let stream = null;
@@ -24,7 +25,7 @@ const initUserAudio = async (): Promise<IinitUserAudio> => {
 
 	//Create audio source
 	//Here, we use an audio file, but this could also be e.g. microphone input
-	const stream: MediaStream = await getMedia();
+	stream = await getMedia();
 	if (!stream) return null;
 	const audioSourceNode: MediaStreamAudioSourceNode = audioCtx.createMediaStreamSource(stream);
 
@@ -48,7 +49,13 @@ const getDataArray = (analyserNode: AnalyserNode): Float32Array => {
     return dataArray;
 };
 
+const stopUserAudio = (): void => {
+    stream.getAudioTracks()
+        .forEach(track => track.stop());
+};
+
 export {
     initUserAudio,
     getDataArray,
+    stopUserAudio,
 };

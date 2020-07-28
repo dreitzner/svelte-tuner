@@ -1,11 +1,13 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import serve from 'rollup-plugin-serve'
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import svg from 'rollup-plugin-svg';
+import fs from 'fs';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -44,11 +46,35 @@ export default {
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
-		!production && serve(),
+		!production && serve({
+			// Launch in browser (default: false)
+			open: true,
+
+			// Folder to serve files from
+			contentBase: 'public',
+
+			// Options used in setting up server
+			host: 'local.local',
+			port: 443,
+
+			// By default server will be served over HTTP (https: false). It can optionally be served over HTTPS
+			https: {
+				key: fs.readFileSync('local-key.pem'),
+				cert: fs.readFileSync('local-cert.pem'),
+			},
+		}),
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
-		!production && livereload('public'),
+		!production && livereload({
+			watch: 'public',
+
+			// other livereload options
+			https: {
+				key: fs.readFileSync('local-key.pem'),
+				cert: fs.readFileSync('local-cert.pem'),
+			}
+		}),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
@@ -59,19 +85,19 @@ export default {
 	}
 };
 
-function serve() {
-	let started = false;
+// function serve() {
+// 	let started = false;
 
-	return {
-		writeBundle() {
-			if (!started) {
-				started = true;
+// 	return {
+// 		writeBundle() {
+// 			if (!started) {
+// 				started = true;
 
-				require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
-					stdio: ['ignore', 'inherit', 'inherit'],
-					shell: true
-				});
-			}
-		}
-	};
-}
+// 				require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
+// 					stdio: ['ignore', 'inherit', 'inherit'],
+// 					shell: true
+// 				});
+// 			}
+// 		}
+// 	};
+// }

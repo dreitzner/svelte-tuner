@@ -3,7 +3,7 @@
 </script>
 
 <header class="flex">
-  <a href=".">
+  <a href="https://reitzner.at">
     {@html logo}
   </a>
 </header>
