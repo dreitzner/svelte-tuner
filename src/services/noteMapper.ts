@@ -38,11 +38,11 @@ const mapper: ISegments = {
     'C':
     {
         sharp: false,
-                    t0: false,              t1: false,
-        tm0: false, tm1: false, tm2: false, tm3: false, tm4: false,
-                    m0: false,              m1: false,
-        mb0: false, mb1: false, mb2: false, mb3: false, mb4: false,
-                    b0: false,              b1: false,
+                   t0: true,               t1: true,
+        tm0: true, tm1: false, tm2: false, tm3: false, tm4: false,
+                   m0: false,              m1: false,
+        mb0: true, mb1: false, mb2: false, mb3: false, mb4: false,
+                   b0: true,               b1: true,
     },
     'C#':
     {
@@ -155,5 +155,7 @@ const mapper: ISegments = {
 };
 
 export const noteMapper = (note: string): ISegment => {
-    return noteMapper[note] || noteMapper['0'];
+    console.log(note, mapper[note], mapper);
+    
+    return mapper[note] || mapper['0'];
 } 
