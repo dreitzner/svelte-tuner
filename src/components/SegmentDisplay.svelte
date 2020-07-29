@@ -14,6 +14,7 @@
 
     {#if mappedNote}
     <div class="wrapper">
+        <div class="sharp" class:isOn={mappedNote.sharp}># Note</div>
         <div class="flex">
             <Segment isOn={mappedNote.t0} />
             <Segment isOn={mappedNote.t1} />
@@ -50,5 +51,27 @@
         background: black;
         padding: 1rem;
         width: 68px;
+    }
+    .sharp {
+        position: relative;
+        margin-bottom: 10px;
+        color: #888;
+    }
+
+    .sharp:before {
+        position: absolute;
+        content: '';
+        background: red;
+        opacity: .3;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        top: 23px;
+        left: -1px;
+        transition: all .5s;
+    }
+    .sharp.isOn:before {
+        opacity: 1;
+        box-shadow: 0 0 3px 2px rgb(255 0 0 / 80%);
     }
 </style>

@@ -46,12 +46,12 @@ const mapper: ISegments = {
     },
     'C#':
     {
-        sharp: false,
-                    t0: false,              t1: false,
-        tm0: false, tm1: false, tm2: false, tm3: false, tm4: false,
-                    m0: false,              m1: false,
-        mb0: false, mb1: false, mb2: false, mb3: false, mb4: false,
-                    b0: false,              b1: false,
+        sharp: true,
+                t0: true,               t1: true,
+        tm0: true, tm1: false, tm2: false, tm3: false, tm4: false,
+                m0: false,              m1: false,
+        mb0: true, mb1: false, mb2: false, mb3: false, mb4: false,
+                b0: true,               b1: true,
     },
     'D':
     {
@@ -64,7 +64,7 @@ const mapper: ISegments = {
     },
     'D#':
     {
-        sharp: false,
+        sharp: true,
                     t0: false,              t1: false,
         tm0: false, tm1: false, tm2: false, tm3: false, tm4: false,
                     m0: false,              m1: false,
@@ -74,29 +74,29 @@ const mapper: ISegments = {
     'E':
     {
         sharp: false,
-                    t0: false,              t1: false,
-        tm0: false, tm1: false, tm2: false, tm3: false, tm4: false,
-                    m0: false,              m1: false,
-        mb0: false, mb1: false, mb2: false, mb3: false, mb4: false,
-                    b0: false,              b1: false,
+                t0: true,              t1: true,
+        tm0: true, tm1: false, tm2: false, tm3: false, tm4: false,
+                m0: true,              m1: true,
+        mb0: true, mb1: false, mb2: false, mb3: false, mb4: false,
+                b0: true,              b1: true,
     },
     'F':
     {
         sharp: false,
-                    t0: false,              t1: false,
-        tm0: false, tm1: false, tm2: false, tm3: false, tm4: false,
-                    m0: false,              m1: false,
-        mb0: false, mb1: false, mb2: false, mb3: false, mb4: false,
+                    t0: true,              t1: true,
+        tm0: true, tm1: false, tm2: false, tm3: false, tm4: false,
+                    m0: true,              m1: true,
+        mb0: true, mb1: false, mb2: false, mb3: false, mb4: false,
                     b0: false,              b1: false,
     },
     'F#':
     {
-        sharp: false,
-                    t0: false,              t1: false,
-        tm0: false, tm1: false, tm2: false, tm3: false, tm4: false,
-                    m0: false,              m1: false,
-        mb0: false, mb1: false, mb2: false, mb3: false, mb4: false,
-                    b0: false,              b1: false,
+        sharp: true,
+                t0: true,              t1: true,
+        tm0: true, tm1: false, tm2: false, tm3: false, tm4: false,
+                m0: true,              m1: true,
+        mb0: true, mb1: false, mb2: false, mb3: false, mb4: false,
+                b0: false,              b1: false,
     },
     'G':
     {
@@ -109,7 +109,7 @@ const mapper: ISegments = {
     },
     'G#':
     {
-        sharp: false,
+        sharp: true,
                     t0: false,              t1: false,
         tm0: false, tm1: false, tm2: false, tm3: false, tm4: false,
                     m0: false,              m1: false,
@@ -119,20 +119,20 @@ const mapper: ISegments = {
     'A':
     {
         sharp: false,
-                    t0: false,              t1: false,
-        tm0: false, tm1: false, tm2: false, tm3: false, tm4: false,
-                    m0: false,              m1: false,
-        mb0: false, mb1: false, mb2: false, mb3: false, mb4: false,
+                    t0: true,              t1: true,
+        tm0: true, tm1: false, tm2: false, tm3: false, tm4: true,
+                    m0: true,              m1: true,
+        mb0: true, mb1: false, mb2: false, mb3: false, mb4: true,
                     b0: false,              b1: false,
     },
     'A#':
     {
-        sharp: false,
-                    t0: false,              t1: false,
-        tm0: false, tm1: false, tm2: false, tm3: false, tm4: false,
-                    m0: false,              m1: false,
-        mb0: false, mb1: false, mb2: false, mb3: false, mb4: false,
-                    b0: false,              b1: false,
+        sharp: true,
+                t0: true,              t1: true,
+        tm0: true, tm1: false, tm2: false, tm3: false, tm4: true,
+                m0: true,              m1: true,
+        mb0: true, mb1: false, mb2: false, mb3: false, mb4: true,
+                b0: false,              b1: false,
     },
     'B':
     {

@@ -22,8 +22,8 @@
         background: red;
         opacity: .3;
         transition: all .5s;
-        margin: .2rem .1rem;
-        margin-left: calc(5px + .2rem);
+        margin: .15rem .05rem;
+        margin-left: calc(5px + .1rem);
     }
     .isOn div{
         opacity: 1;
@@ -32,7 +32,7 @@
     .upright div{
         height: 20px;
         width: 5px;
-        margin-left: .1rem;
+        margin-left: .05rem;
     }
     .turnedLeft, .turnedRight {
         position: relative;
