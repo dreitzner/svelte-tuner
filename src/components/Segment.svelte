@@ -21,8 +21,9 @@
         width: 20px;
         background: red;
         opacity: .3;
-        transition: all .3s;
-        margin: .2rem;
+        transition: all .5s;
+        margin: .2rem .1rem;
+        margin-left: calc(5px + .2rem);
     }
     .isOn div{
         opacity: 1;
@@ -31,22 +32,23 @@
     .upright div{
         height: 20px;
         width: 5px;
+        margin-left: .1rem;
     }
     .turnedLeft, .turnedRight {
         position: relative;
+        width: 20px;
+        margin: .05rem;
     }
     .turnedLeft div, .turnedRight div {
         transform-origin: top left;
         position: absolute;
     }
     .turnedLeft div{
-        transform: rotate(75deg);
-        min-width: 8px;
-        margin-left: 2px;
+        transform: rotate(58deg);
     }
     .turnedRight div{
-        transform: rotate(105deg);   
-        min-width: 4px;
-        margin-left: 8px;
+        transform: rotate(122deg);
+        left: 10px;
+        top: 2px;
     }
 </style>

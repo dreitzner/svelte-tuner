@@ -155,7 +155,7 @@ const mapper: ISegments = {
 };
 
 export const noteMapper = (note: string): ISegment => {
-    console.log(note, mapper[note], mapper);
+    // console.log(note, mapper[note], mapper);
     
     return mapper[note] || mapper['0'];
 } 
