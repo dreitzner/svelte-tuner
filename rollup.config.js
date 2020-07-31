@@ -11,79 +11,108 @@ import fs from 'fs';
 
 const production = !process.env.ROLLUP_WATCH;
 
-export default {
-	input: 'src/main.ts',
-	output: {
-		sourcemap: true,
-		format: 'iife',
-		name: 'app',
-		file: 'public/build/bundle.js'
+export default [
+	{
+		input: './src/workers/calculateNote.ts',
+		output: [
+			{ format: 'es', file: 'public/build/calculateNote.esm.js' },
+			{ format: 'umd', file: 'public/build/calculateNote.js', name: 'calculateNote' }
+		],
+		plugins: [
+			// If you have external dependencies installed from
+			// npm, you'll most likely need these plugins. In
+			// some cases you'll need additional configuration -
+			// consult the documentation for details:
+			// https://github.com/rollup/plugins/tree/master/packages/commonjs
+			resolve({
+				browser: true,
+				dedupe: ['svelte']
+			}),
+			commonjs(),
+			typescript({ sourceMap: !production }),
+
+			// If we're building for production (npm run build
+			// instead of npm run dev), minify
+			production && terser()
+		],
+		watch: {
+			clearScreen: false
+		}
 	},
-	plugins: [
-		svelte({
-			// enable run-time checks when not in production
-			dev: !production,
-			// we'll extract any component CSS out into
-			// a separate file - better for performance
-			css: css => {
-				css.write('public/build/bundle.css');
-			},
-			preprocess: sveltePreprocess(),
-		}),
-		svg(),
+	{
+		input: 'src/main.ts',
+		output: {
+			sourcemap: true,
+			format: 'iife',
+			name: 'app',
+			file: 'public/build/bundle.js'
+		},
+		plugins: [
+			svelte({
+				// enable run-time checks when not in production
+				dev: !production,
+				// we'll extract any component CSS out into
+				// a separate file - better for performance
+				css: css => {
+					css.write('public/build/bundle.css');
+				},
+				preprocess: sveltePreprocess(),
+			}),
+			svg(),
 
-		// If you have external dependencies installed from
-		// npm, you'll most likely need these plugins. In
-		// some cases you'll need additional configuration -
-		// consult the documentation for details:
-		// https://github.com/rollup/plugins/tree/master/packages/commonjs
-		resolve({
-			browser: true,
-			dedupe: ['svelte']
-		}),
-		commonjs(),
-		typescript({ sourceMap: !production }),
+			// If you have external dependencies installed from
+			// npm, you'll most likely need these plugins. In
+			// some cases you'll need additional configuration -
+			// consult the documentation for details:
+			// https://github.com/rollup/plugins/tree/master/packages/commonjs
+			resolve({
+				browser: true,
+				dedupe: ['svelte']
+			}),
+			commonjs(),
+			typescript({ sourceMap: !production }),
 
-		// In dev mode, call `npm run start` once
-		// the bundle has been generated
-		!production && serve({
-			// Launch in browser (default: false)
-			open: true,
+			// In dev mode, call `npm run start` once
+			// the bundle has been generated
+			!production && serve({
+				// Launch in browser (default: false)
+				open: true,
 
-			// Folder to serve files from
-			contentBase: 'public',
+				// Folder to serve files from
+				contentBase: 'public',
 
-			// Options used in setting up server
-			host: 'local.local',
-			port: 443,
+				// Options used in setting up server
+				host: 'local.local',
+				port: 443,
 
-			// By default server will be served over HTTP (https: false). It can optionally be served over HTTPS
-			https: {
-				key: fs.readFileSync('local-key.pem'),
-				cert: fs.readFileSync('local-cert.pem'),
-			},
-		}),
+				// By default server will be served over HTTP (https: false). It can optionally be served over HTTPS
+				https: {
+					key: fs.readFileSync('local-key.pem'),
+					cert: fs.readFileSync('local-cert.pem'),
+				},
+			}),
 
-		// Watch the `public` directory and refresh the
-		// browser on changes when not in production
-		!production && livereload({
-			watch: 'public',
+			// Watch the `public` directory and refresh the
+			// browser on changes when not in production
+			!production && livereload({
+				watch: 'public',
 
-			// other livereload options
-			https: {
-				key: fs.readFileSync('local-key.pem'),
-				cert: fs.readFileSync('local-cert.pem'),
-			}
-		}),
+				// other livereload options
+				https: {
+					key: fs.readFileSync('local-key.pem'),
+					cert: fs.readFileSync('local-cert.pem'),
+				}
+			}),
 
-		// If we're building for production (npm run build
-		// instead of npm run dev), minify
-		production && terser()
-	],
-	watch: {
-		clearScreen: false
-	}
-};
+			// If we're building for production (npm run build
+			// instead of npm run dev), minify
+			production && terser()
+		],
+		watch: {
+			clearScreen: false
+		}
+	},
+];
 
 // function serve() {
 // 	let started = false;

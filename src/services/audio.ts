@@ -1,6 +1,6 @@
 interface IinitUserAudio {
     analyserNode: AnalyserNode,
-    bufferLength: number,
+    sampleRate: number,
 }
 
 let analyserNode: AnalyserNode;
@@ -21,7 +21,8 @@ const getMedia = async (): Promise<MediaStream> => {
 }
 
 const initUserAudio = async (): Promise<IinitUserAudio> => {
-	const audioCtx = new AudioContext();
+    const audioCtx = new AudioContext();
+    const sampleRate: number = audioCtx.sampleRate;
 
 	//Create audio source
 	//Here, we use an audio file, but this could also be e.g. microphone input
@@ -31,16 +32,16 @@ const initUserAudio = async (): Promise<IinitUserAudio> => {
 
 	//Create analyser node
 	analyserNode = audioCtx.createAnalyser();
-	analyserNode.fftSize = 256;
+	// analyserNode.fftSize = 32768;
 	bufferLength = analyserNode.frequencyBinCount;
-	dataArray = new Float32Array(bufferLength);
+    dataArray = new Float32Array(bufferLength);
 
 	//Set up audio node network
 	audioSourceNode.connect(analyserNode);
 	analyserNode.connect(audioCtx.destination);
 	return {
         analyserNode,
-        bufferLength,
+        sampleRate,
     };
 };
 
@@ -48,6 +49,16 @@ const getDataArray = (analyserNode: AnalyserNode): Float32Array => {
     analyserNode.getFloatFrequencyData(dataArray)
     return dataArray;
 };
+
+const _getIndexOfHighestValue = (dataArray: Float32Array): number => {
+    return dataArray.findIndex((e) => e === Math.max(...dataArray));
+}
+
+const getFrequency = (dataArray: Float32Array, sampleRate: number): number => {
+    if (!dataArray) return null;
+    const maxIndex = _getIndexOfHighestValue(dataArray);
+    return sampleRate / 2 / dataArray.length * maxIndex;
+}
 
 const stopUserAudio = (): void => {
     stream.getAudioTracks()
@@ -58,4 +69,5 @@ export {
     initUserAudio,
     getDataArray,
     stopUserAudio,
+    getFrequency,
 };

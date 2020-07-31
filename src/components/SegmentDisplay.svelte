@@ -2,15 +2,15 @@
     import {notes} from '../services/notes';
     import {noteMapper} from '../services/noteMapper';
     import Segment from './Segment.svelte';
-    let note: string;
+    export let note: string = null;
     $: mappedNote = noteMapper(note);
 </script>
 <div>
-    <select name="note" bind:value={note}>
+    <!-- <select name="note" bind:value={note}>
         {#each notes as note}
             <option value="{note}">{note}</option>
         {/each}
-    </select>
+    </select> -->
 
     {#if mappedNote}
     <div class="wrapper">

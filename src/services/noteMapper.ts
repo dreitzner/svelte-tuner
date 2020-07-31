@@ -56,7 +56,7 @@ const mapper: ISegments = {
     'D':
     {
         sharp: false,
-                    t0: false,              t1: true,
+                    t0: false,              t1: false,
         tm0: false, tm1: false, tm2: false, tm3: false, tm4: true,
                     m0: true,              m1: true,
         mb0: true, mb1: false, mb2: false, mb3: false, mb4: true,
@@ -65,7 +65,7 @@ const mapper: ISegments = {
     'D#':
     {
         sharp: true,
-                t0: false,              t1: true,
+                t0: false,              t1: false,
         tm0: false, tm1: false, tm2: false, tm3: false, tm4: true,
                 m0: true,              m1: true,
         mb0: true, mb1: false, mb2: false, mb3: false, mb4: true,
@@ -155,7 +155,5 @@ const mapper: ISegments = {
 };
 
 export const noteMapper = (note: string): ISegment => {
-    // console.log(note, mapper[note], mapper);
-    
     return mapper[note] || mapper['0'];
 } 
