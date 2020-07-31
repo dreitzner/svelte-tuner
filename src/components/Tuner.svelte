@@ -3,11 +3,6 @@
   import SegmentDisplay from './SegmentDisplay.svelte';
   import * as Comlink from 'comlink';
 
-//   interface IcalcluteNote {
-//     calculate: Function(dataArray: Float32Array, sampleRate: number),
-//     note: Promise<string>,
-// }
-
   interface IcalcluteNote {
       calculate(dataArray: Float32Array, sampleRate: number): void;
       note: string;

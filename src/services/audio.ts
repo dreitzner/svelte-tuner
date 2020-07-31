@@ -28,7 +28,8 @@ const initUserAudio = async (): Promise<IinitUserAudio> => {
 	//Here, we use an audio file, but this could also be e.g. microphone input
 	stream = await getMedia();
 	if (!stream) return null;
-	const audioSourceNode: MediaStreamAudioSourceNode = audioCtx.createMediaStreamSource(stream);
+    const audioSourceNode: MediaStreamAudioSourceNode = audioCtx.createMediaStreamSource(stream);
+    // TODO: do not output
 
 	//Create analyser node
 	analyserNode = audioCtx.createAnalyser();
