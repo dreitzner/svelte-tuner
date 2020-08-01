@@ -1,9 +1,9 @@
 {
 	"background_color": "#ffffff",
 	"theme_color": "#0C3D87",
-	"name": "reitzner.at - Webseite",
-	"short_name": "reitzner.at",
-	"display": "minimal-ui",
+	"name": "reitzner.at - Svelte Tuner",
+	"short_name": "Svelte Tuner",
+	"display": "fullscreen",
 	"start_url": "/",
 	"icons": [
 		{

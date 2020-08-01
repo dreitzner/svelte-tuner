@@ -6,6 +6,8 @@
   <a href="https://reitzner.at">
     {@html logo}
   </a>
+  
+  <h1>Svelte Tuner</h1>
 </header>
 
 <style>

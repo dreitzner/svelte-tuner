@@ -13,7 +13,7 @@
     </select> -->
 
     {#if mappedNote}
-    <div class="wrapper">
+    <div class="wrapper flex">
         <div class="sharp" class:isOn={mappedNote.sharp}># Note</div>
         <div class="flex">
             <Segment isOn={mappedNote.t0} />
@@ -48,7 +48,9 @@
 
 <style>
     .wrapper {
-        background: black;
+        flex-direction: column;
+        align-items: center;
+        border: 5px inset #666;
         padding: 1rem;
         width: 68px;
     }

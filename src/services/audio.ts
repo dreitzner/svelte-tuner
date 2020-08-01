@@ -29,7 +29,6 @@ const initUserAudio = async (): Promise<IinitUserAudio> => {
 	stream = await getMedia();
 	if (!stream) return null;
     const audioSourceNode: MediaStreamAudioSourceNode = audioCtx.createMediaStreamSource(stream);
-    // TODO: do not output
 
 	//Create analyser node
 	analyserNode = audioCtx.createAnalyser();
@@ -39,7 +38,7 @@ const initUserAudio = async (): Promise<IinitUserAudio> => {
 
 	//Set up audio node network
 	audioSourceNode.connect(analyserNode);
-	analyserNode.connect(audioCtx.destination);
+	audioSourceNode.disconnect(audioCtx.destination);
 	return {
         analyserNode,
         sampleRate,
