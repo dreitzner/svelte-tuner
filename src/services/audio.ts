@@ -37,8 +37,12 @@ const initUserAudio = async (): Promise<IinitUserAudio> => {
     dataArray = new Float32Array(bufferLength);
 
 	//Set up audio node network
-	audioSourceNode.connect(analyserNode);
-	audioSourceNode.disconnect(audioCtx.destination);
+    audioSourceNode.connect(analyserNode);
+    try {
+        audioSourceNode.disconnect(audioCtx.destination);
+    } catch (error) {
+        console.error(error);
+    }
 	return {
         analyserNode,
         sampleRate,
