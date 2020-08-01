@@ -1,5 +1,5 @@
 <script type="typescript">
-    import {notes} from '../services/notes';
+    // import {notes} from '../services/notes';
     import {noteMapper} from '../services/noteMapper';
     import Segment from './Segment.svelte';
     export let note: string = null;

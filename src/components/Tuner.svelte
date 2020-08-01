@@ -2,16 +2,7 @@
   import { initUserAudio, getDataArray, stopUserAudio } from "../services/audio";
   import SegmentDisplay from './SegmentDisplay.svelte';
   import * as Comlink from 'comlink';
-  // import {IcalcluteNote} from '../interfaces/calcluteNote';
-
-  interface IcalcluteNote {
-    calculate(dataArray: Float32Array, sampleRate: number): void;
-    note: string;
-    frequency: number;
-  }
-  interface ICalculateNoteConstructur {
-    new (): IcalcluteNote,
-  }
+  import type {IcalcluteNote, ICalculateNoteConstructur} from '../interfaces/calcluteNote';
 
   let analyserNode: AnalyserNode = null;
   let sampleRate: number;
@@ -19,6 +10,7 @@
   let worker: Worker;
   let note: string;
   let frequency: number;
+  let cent: number;
   let calculateNote: Comlink.Remote<IcalcluteNote>;
   let running: boolean;
 
@@ -32,6 +24,7 @@
     await calculateNote.calculate(dataArray, sampleRate);
     note = await calculateNote.note;
     frequency = await calculateNote.frequency;
+    cent = await calculateNote.cent;
     running = false;
   };
 
@@ -58,12 +51,27 @@
 <main class="flex">
 
   <!-- HERE: cents leds -->
+
+  <span>
+    We are 
+    {#if cent}
+      {cent}
+    {:else}
+      --
+    {/if}
+    off
+  </span>
   
   <SegmentDisplay {note}/>
-
-  {#if frequency}
-    {frequency}
-  {/if}
+  
+  <span>
+    Frequency:  
+    {#if frequency}
+      {frequency}
+    {:else}
+      --
+    {/if}
+  </span>
 	
 	<button on:click={click}>
 		{#if analyserNode}

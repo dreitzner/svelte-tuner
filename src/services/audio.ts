@@ -38,11 +38,6 @@ const initUserAudio = async (): Promise<IinitUserAudio> => {
 
 	//Set up audio node network
     audioSourceNode.connect(analyserNode);
-    try {
-        audioSourceNode.disconnect(audioCtx.destination);
-    } catch (error) {
-        console.error(error);
-    }
 	return {
         analyserNode,
         sampleRate,

@@ -1,20 +1,18 @@
 import { getFrequency } from "../services/audio";
-import { getClosestNoteFromFrequency } from '../services/notes';
+import { getClosestNoteAndCent } from '../services/notes';
 import * as Comlink from 'comlink';
-import {IcalcluteNote} from '../interfaces/calcluteNote';
-
-// interface IcalcluteNote {
-//     calculate(dataArray: Float32Array, sampleRate: number): void;
-//     note: string;
-//     frequency: number;
-// }
+import type {IcalcluteNote, InoteAndCent} from '../interfaces/calcluteNote';
 
 class CalculateNote implements IcalcluteNote {
     note: string;
     frequency: number;
+    cent: number;
     calculate(dataArray: Float32Array, sampleRate: number) {
         this.frequency = getFrequency(dataArray, sampleRate);
-        this.note = getClosestNoteFromFrequency(this.frequency);
+        const data: InoteAndCent = getClosestNoteAndCent(this.frequency);
+        if (!data) return;
+        this.note = data.note;
+        this.cent = data.cent;
     } 
 }
 
