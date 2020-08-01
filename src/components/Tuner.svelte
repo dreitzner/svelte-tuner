@@ -90,6 +90,7 @@
     width: 320px;
     height: 320px;
     background-color: black;
+    border-radius: .2em;
     padding: 2em;
     margin: 0 auto;
     box-sizing: border-box;

@@ -16,29 +16,29 @@
     <div class="wrapper flex">
         <div class="sharp" class:isOn={mappedNote.sharp}># Note</div>
         <div class="flex">
-            <Segment isOn={mappedNote.t0} />
+            <Segment isOn={mappedNote.t0} isFirst={true}/>
             <Segment isOn={mappedNote.t1} />
         </div>
         <div class="flex">
-            <Segment isOn={mappedNote.tm0} upright={true}/>
+            <Segment isOn={mappedNote.tm0} upright={true} isFirst={true}/>
             <Segment isOn={mappedNote.tm1} turnedLeft={true}/>
             <Segment isOn={mappedNote.tm2} upright={true}/>
             <Segment isOn={mappedNote.tm3} turnedRight={true}/>
             <Segment isOn={mappedNote.tm4} upright={true}/>
         </div>
         <div class="flex">
-            <Segment isOn={mappedNote.m0} />
+            <Segment isOn={mappedNote.m0} isFirst={true} />
             <Segment isOn={mappedNote.m1} />
         </div>
         <div class="flex">
-            <Segment isOn={mappedNote.mb0} upright={true}/>
+            <Segment isOn={mappedNote.mb0} upright={true} isFirst={true}/>
             <Segment isOn={mappedNote.mb1} turnedRight={true}/>
             <Segment isOn={mappedNote.mb2} upright={true}/>
             <Segment isOn={mappedNote.mb3} turnedLeft={true}/>
             <Segment isOn={mappedNote.mb4} upright={true}/>
         </div>
         <div class="flex">
-            <Segment isOn={mappedNote.b0} />
+            <Segment isOn={mappedNote.b0} isFirst={true}/>
             <Segment isOn={mappedNote.b1} />
         </div>
     </div>

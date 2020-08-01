@@ -1,5 +1,6 @@
 <script type="typescript">
     export let isOn: boolean;
+    export let isFirst: boolean = false;
     export let upright: boolean = false;
     export let turnedLeft: boolean = false;
     export let turnedRight: boolean = false;
@@ -9,6 +10,7 @@
 -->
 <div
     class:isOn
+    class:isFirst
     class:upright
     class:turnedLeft
     class:turnedRight>
@@ -25,9 +27,13 @@
         margin: .15rem .05rem;
         margin-left: calc(5px + .1rem);
     }
+
     .isOn div{
         opacity: 1;
         box-shadow: 0 0 3px 2px rgb(255 0 0 / 80%);
+    }
+    .isFirst div {
+        margin-left: 0;
     }
     .upright div{
         height: 20px;
