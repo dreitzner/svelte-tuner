@@ -1,17 +1,11 @@
 <script type="typescript">
-    // import {notes} from '../services/notes';
     import {noteMapper} from '../services/noteMapper';
     import Segment from './Segment.svelte';
     export let note: string = null;
-    $: mappedNote = noteMapper(note);
+    export let isOn: boolean = false;
+    $: mappedNote = noteMapper(isOn ? note : null);
 </script>
 <div>
-    <!-- <select name="note" bind:value={note}>
-        {#each notes as note}
-            <option value="{note}">{note}</option>
-        {/each}
-    </select> -->
-
     {#if mappedNote}
     <div class="wrapper flex">
         <div class="sharp" class:isOn={mappedNote.sharp}># Note</div>
@@ -50,9 +44,10 @@
     .wrapper {
         flex-direction: column;
         align-items: center;
-        border: 5px inset #666;
+        border: 5px inset #777;
         padding: 1rem;
         width: 68px;
+        background: #ffffff05;
     }
     .sharp {
         position: relative;

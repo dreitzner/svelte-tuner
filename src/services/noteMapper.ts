@@ -32,6 +32,7 @@ interface ISegments {
     'A#': ISegment,
     'B': ISegment,
     '0': ISegment,
+    'empty': ISegment,
 }
 
 const mapper: ISegments = {
@@ -152,8 +153,19 @@ const mapper: ISegments = {
         mb0: true, mb1: false, mb2: false, mb3: false, mb4: true,
                     b0: true,              b1: true,
     },
+    'empty':
+    {
+        sharp: false,
+                   t0: false,               t1: false,
+        tm0: false, tm1: false, tm2: false, tm3: false, tm4: false,
+                   m0: false,              m1: false,
+        mb0: false, mb1: false, mb2: false, mb3: false, mb4: false,
+                    b0: false,              b1: false,
+    },
 };
 
 export const noteMapper = (note: string): ISegment => {
-    return mapper[note] || mapper['0'];
+	return note === null
+		? mapper['empty']
+		: mapper[note] || mapper['0'];
 } 

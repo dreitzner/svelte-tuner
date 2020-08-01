@@ -13,6 +13,7 @@
   let cent: number;
   let calculateNote: Comlink.Remote<IcalcluteNote>;
   let running: boolean;
+  let buttonActive: boolean;
 
   const analyse = async () => {
     if (running) return;
@@ -29,6 +30,8 @@
   };
 
   const click = async () => {
+    buttonActive = true;
+    setTimeout(() => {buttonActive = false;}, 300)
 		if (analyserNode) return reset();
     ({ analyserNode, sampleRate } = await initUserAudio());
     initWorker();
@@ -62,7 +65,7 @@
     off
   </span>
   
-  <SegmentDisplay {note}/>
+  <SegmentDisplay {note} isOn={!!analyserNode} />
   
   <span>
     Frequency:  
@@ -73,12 +76,7 @@
     {/if}
   </span>
 	
-	<button on:click={click}>
-		{#if analyserNode}
-			stop
-		{:else}
-			start
-		{/if}
+	<button on:click={click} class:active={buttonActive} aria-label="{analyserNode ? 'start' : 'stop'} tuner">
 	</button>
 </main>
 
@@ -87,12 +85,39 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    width: 320px;
-    height: 320px;
+    width: 400px;
+    height: 400px;
     background-color: black;
     border-radius: .2em;
     padding: 2em;
     margin: 0 auto;
     box-sizing: border-box;
+  }
+
+  button {
+    height: 50px;
+    width: 50px;
+    margin-top: auto;
+    border: 0;
+    border-radius: 50%;
+    background: silver;
+    position: relative;
+    transition: all .3s;
+    outline: none;
+  }
+  button::before {
+    content: '';
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    border: 1px solid;
+    border-radius: 50%;
+    margin: 1px;
+    top: 0;
+    left: 0;
+  }
+
+  button:active, button.active {
+    transform: scale(.95);
   }
 </style>
