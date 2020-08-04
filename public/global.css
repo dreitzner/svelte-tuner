@@ -19,15 +19,6 @@ a {
 	color: inherit;
 }
 
-code {
-	font-family: menlo, inconsolata, monospace;
-	font-size: calc(1em - 2px);
-	color: #555;
-	background-color: #f0f0f0;
-	padding: 0.2em 0.4em;
-	border-radius: 2px;
-}
-
 @media (min-width: 400px) {
 	body {
 		font-size: 16px;
@@ -38,13 +29,39 @@ code {
 	display: flex;
 }
 
-main .link {
-    text-decoration: none;
-    font-weight: 700;
-    color: #0D47A1
+.led {
+	position: relative;
+	width: 6px;
+}
+.led:before {
+	position: absolute;
+	content: '';
+	background: red;
+	opacity: .3;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	top: 23px;
+	left: -1px;
+	transition: all .5s;
+}
+.led.isOn:before {
+	opacity: 1;
+	box-shadow: 0 0 3px 2px rgb(255 0 0 / 80%);
+}
+.led.-big {
+	width: 12px;
+}
+.led.-big:before {
+	width: 12px;
+	height: 12px;
 }
 
-main .link.-pre:before {
-    content: "\260D";
-    padding-right: .3em
+.led.-green:before {
+	background: green;
+}
+
+.led.isOn.-green:before {
+	opacity: 1;
+	box-shadow: 0 0 3px 2px rgb(0 255 0 / 80%);
 }

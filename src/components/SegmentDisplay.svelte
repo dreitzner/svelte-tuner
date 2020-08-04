@@ -5,10 +5,10 @@
     export let isOn: boolean = false;
     $: mappedNote = noteMapper(isOn ? note : null);
 </script>
-<div>
+<div class="border">
     {#if mappedNote}
     <div class="wrapper flex">
-        <div class="sharp" class:isOn={mappedNote.sharp}># Note</div>
+        <div class="sharp led" class:isOn={mappedNote.sharp}># Note</div>
         <div class="flex">
             <Segment isOn={mappedNote.t0} isFirst={true}/>
             <Segment isOn={mappedNote.t1} />
@@ -41,34 +41,18 @@
 
 
 <style>
+    .border {
+        border: 5px inset #b7b7b71f;
+    }
     .wrapper {
         flex-direction: column;
         align-items: center;
-        border: 5px inset #777;
         padding: 1rem;
         width: 68px;
-        background: #ffffff05;
+        background: #000;
     }
     .sharp {
-        position: relative;
         margin-bottom: 10px;
         color: #888;
-    }
-
-    .sharp:before {
-        position: absolute;
-        content: '';
-        background: red;
-        opacity: .3;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        top: 23px;
-        left: -1px;
-        transition: all .5s;
-    }
-    .sharp.isOn:before {
-        opacity: 1;
-        box-shadow: 0 0 3px 2px rgb(255 0 0 / 80%);
     }
 </style>
