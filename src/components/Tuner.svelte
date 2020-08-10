@@ -90,6 +90,7 @@
 
 <style>
   main {
+    max-width: 90vw;
     flex-direction: column;
     align-items: center;
     position: relative;
