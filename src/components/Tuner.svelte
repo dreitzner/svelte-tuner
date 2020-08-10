@@ -7,10 +7,6 @@
   import SegmentDisplay from "./SegmentDisplay.svelte";
   import CentDisplay from "./CentDisplay.svelte";
   import * as Comlink from "comlink";
-  import type {
-    IcalcluteNote,
-    ICalculateNoteConstructur,
-  } from "../interfaces/calcluteNote";
 
   let analyserNode: AnalyserNode = null;
   let sampleRate: number;

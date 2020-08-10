@@ -1,5 +1,3 @@
-import {InoteAndCent} from '../interfaces/calcluteNote';
-
 const notes: Array<string> = [
     'A',
     'A#',

@@ -1,15 +1,15 @@
-export interface IcalcluteNote {
+declare interface IcalcluteNote {
     calculate(dataArray: Float32Array, sampleRate: number): void;
     note: string;
     frequency: number;
     cent: number;
 }
 
-export interface ICalculateNoteConstructur {
+declare interface ICalculateNoteConstructur {
   new (): IcalcluteNote,
 }
 
-export interface InoteAndCent {
+declare interface InoteAndCent {
     note: string;
     cent: number;
 }

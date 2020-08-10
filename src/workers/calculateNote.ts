@@ -1,7 +1,6 @@
 import { getFrequency } from "../services/audio";
 import { getClosestNoteAndCent } from '../services/notes';
 import * as Comlink from 'comlink';
-import type {IcalcluteNote, InoteAndCent} from '../interfaces/calcluteNote';
 
 class CalculateNote implements IcalcluteNote {
     note: string;

@@ -2,7 +2,7 @@
 
 # svelte tuner
 
-TBD
+Your friendly tuner done in svelte with typescript and comlink.
 
 
 ## Get started
