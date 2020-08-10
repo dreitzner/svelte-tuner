@@ -5,7 +5,6 @@ interface IinitUserAudio {
 
 let analyserNode: AnalyserNode;
 let dataArray: Float32Array;
-let bufferLength: number;
 let stream: MediaStream;
 
 const getMedia = async (): Promise<MediaStream> => {
@@ -32,9 +31,8 @@ const initUserAudio = async (): Promise<IinitUserAudio> => {
 
 	//Create analyser node
 	analyserNode = audioCtx.createAnalyser();
-	// analyserNode.fftSize = 32768;
-	bufferLength = analyserNode.frequencyBinCount;
-    dataArray = new Float32Array(bufferLength);
+	analyserNode.fftSize = 32768; // https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/fftSize
+    dataArray = new Float32Array(analyserNode.frequencyBinCount);
 
 	//Set up audio node network
     audioSourceNode.connect(analyserNode);

@@ -17,11 +17,9 @@ const notes: Array<string> = [
 
 const startFrequency: number = 27.5; // A0
 
-const ln2: number = Math.log(2);
-
 const getNextNote = (frequency: number): number => frequency * Math.pow(2, 1/12); 
 
-const getCent = (noteFrequency: number, measuredFrequency: number): number => 1200 * Math.log(measuredFrequency / noteFrequency) / ln2;
+const getCent = (noteFrequency: number, measuredFrequency: number): number => 1200 * Math.log2(measuredFrequency / noteFrequency);
 
 export const getClosestNoteAndCent = (frequency: number): InoteAndCent => {
     if (!frequency) return null;
@@ -29,7 +27,7 @@ export const getClosestNoteAndCent = (frequency: number): InoteAndCent => {
     while (currentA < frequency) {
         currentA *= 2;
     }
-    let index: number = 0;
+    let index: number = 1;
     let lowerFrequency: number = currentA / 2;
     let upperFrequency: number = getNextNote(lowerFrequency);
 
@@ -40,7 +38,8 @@ export const getClosestNoteAndCent = (frequency: number): InoteAndCent => {
     }
     const lowerCent: number = getCent(lowerFrequency, frequency);
     const upperCent: number = getCent(upperFrequency, frequency);
-    const takeLower: boolean = lowerCent < Math.abs(upperCent);
+    
+    const takeLower: boolean = Math.abs(lowerCent) < Math.abs(upperCent);
     if (takeLower) index--;
     return {
         note: notes[index],
