@@ -8,7 +8,7 @@
 <div class="border">
     {#if mappedNote}
     <div class="wrapper flex">
-        <div class="sharp led" class:isOn={mappedNote.sharp}># Note</div>
+        <div class="sharp led" class:isOn={mappedNote.sharp}>#&nbsp;Note</div>
         <div class="flex">
             <Segment isOn={mappedNote.t0} isFirst={true}/>
             <Segment isOn={mappedNote.t1} />
@@ -52,7 +52,11 @@
         background: #000;
     }
     .sharp {
+        width: 100%;
         margin-bottom: 10px;
         color: #888;
+    }
+    .sharp:before {
+        top: 23px;
     }
 </style>

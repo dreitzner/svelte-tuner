@@ -20,6 +20,7 @@
 
 <style>
     div{
+        margin-top: 30px;
         height: 25px;
         width: 80%;
         justify-content: space-around;

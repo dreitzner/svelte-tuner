@@ -69,18 +69,18 @@
 
   <CentDisplay {cent}/>
 
-  <span>
+  <!-- <span>
     We are
     {#if cent}{cent}{:else}--{/if}
     off
-  </span>
+  </span> -->
 
   <SegmentDisplay {note} isOn={!!analyserNode} />
 
-  <span>
+  <!-- <span>
     Frequency:
     {#if frequency}{frequency}{:else}--{/if}
-  </span>
+  </span> -->
 
   <button
     on:click={click}
