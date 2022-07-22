@@ -1,6 +1,6 @@
 import { getFrequency } from "$lib/services/audio";
 import { getClosestNoteAndCent } from '$lib/services/notes';
-import * as Comlink from '$nm/comlink/dist/esm/comlink.min.mjs';
+import * as Comlink from 'comlink';
 class CalculateNote implements IcalcluteNote {
     note: string;
     frequency: number;

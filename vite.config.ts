@@ -9,7 +9,6 @@ export default defineConfig({
     alias: {
       '$lib': fileURLToPath(new URL('./src/lib', import.meta.url)),
       '$workers': fileURLToPath(new URL('./src/workers', import.meta.url)),
-      '$nm': fileURLToPath(new URL('./node_modules', import.meta.url)),
     }
   }
 })

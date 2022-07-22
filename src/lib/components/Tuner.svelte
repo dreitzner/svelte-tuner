@@ -40,7 +40,7 @@
     }, 300);
     if (analyserNode) return reset();
     ({ analyserNode, sampleRate } = await initUserAudio());
-    initWorker();
+    await initWorker();
     interval = setInterval(analyse, 250);
   };
 
