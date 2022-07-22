@@ -1,10 +1,10 @@
 <script>
-  import logo from '../inline-svg/wappen.svg';
+  import Logo from '../icons/Wappen.svelte';
 </script>
 
 <header class="flex">
   <a href="https://reitzner.at">
-    {@html logo}
+    <Logo />
   </a>
   
   <h1>Svelte Tuner</h1>

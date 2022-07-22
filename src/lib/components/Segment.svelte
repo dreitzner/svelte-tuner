@@ -1,4 +1,4 @@
-<script type="typescript">
+<script lang="ts">
     export let isOn: boolean;
     export let isFirst: boolean = false;
     export let upright: boolean = false;
