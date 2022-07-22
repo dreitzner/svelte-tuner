@@ -21,6 +21,5 @@
   "paths": {
     "$lib/*": ["./src/lib/*"],
     "$workers/*": [".src/workers/*"],
-    "$nm/*": [".node_modules/*"],
   }
 }
