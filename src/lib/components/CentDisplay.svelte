@@ -1,5 +1,5 @@
 <script type="ts">
-    import Cent from './Cent.svelte';
+    import Cent from '$lib/components/Cent.svelte';
 
     export let cent
 </script>

@@ -1,7 +1,6 @@
-import { getFrequency } from "../services/audio";
-import { getClosestNoteAndCent } from '../services/notes';
+import { getFrequency } from "$lib/services/audio";
+import { getClosestNoteAndCent } from '$lib/services/notes';
 import * as Comlink from 'comlink';
-
 class CalculateNote implements IcalcluteNote {
     note: string;
     frequency: number;
@@ -12,7 +11,7 @@ class CalculateNote implements IcalcluteNote {
         if (!data) return;
         this.note = data.note;
         this.cent = data.cent;
-    } 
+    }
 }
 
 Comlink.expose(CalculateNote);

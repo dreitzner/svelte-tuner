@@ -1,4 +1,4 @@
-<script type="typescript">
+<script lang="ts">
     import {noteMapper} from '../services/noteMapper';
     import Segment from './Segment.svelte';
     export let note: string = null;

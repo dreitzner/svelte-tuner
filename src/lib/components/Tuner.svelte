@@ -1,4 +1,4 @@
-<script type="typescript">
+<script lang="ts">
   import {
     initUserAudio,
     getDataArray,
@@ -40,13 +40,14 @@
     }, 300);
     if (analyserNode) return reset();
     ({ analyserNode, sampleRate } = await initUserAudio());
-    initWorker();
+    await initWorker();
     interval = setInterval(analyse, 250);
   };
 
   const initWorker = async () => {
     if (worker) return;
-    worker = new Worker("/build/calculateNote.esm.js");
+    const w = (await import('$workers/calculateNote.ts?worker')).default;
+    worker = new w();
     const CalculateNote: Comlink.Remote<ICalculateNoteConstructur> = Comlink.wrap(
       worker
     );

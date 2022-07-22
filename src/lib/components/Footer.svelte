@@ -1,18 +1,18 @@
 <script>
-  import mail from '../inline-svg/mail.svg';
-  import github from '../inline-svg/github.svg';
-  import twitter from '../inline-svg/twitter.svg';
+  import Mail from '../icons/Mail.svelte';
+  import Github from '../icons/Github.svelte';
+  import Twitter from '../icons/Twitter.svelte';
 </script>
 
 <footer class="flex">
     <a class="flex" href="mailto:domenik@reitzner.at?subject=reitner.at-Mail" title="E-Mail me">
-        {@html mail}
+        <Mail />
     </a>
     <a class="flex" href="https://github.com/dreitzner" title="github">
-        {@html github}
+        <Github />
     </a>
     <a class="flex" href="https://twitter.com/reitznerdomenik" title="twitter">
-        {@html twitter}
+        <Twitter />
     </a>
 </footer>
 

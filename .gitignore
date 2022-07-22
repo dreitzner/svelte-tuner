@@ -1,6 +1,4 @@
 /node_modules/
-/public/build/
+/dist/
 
 .DS_Store
-local-cert.pem
-local-key.pem
