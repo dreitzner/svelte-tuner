@@ -20,5 +20,12 @@
   },
   "dependencies": {
     "comlink": "^4.3.0"
+  },
+  "engines": {
+    "pnpm": ">=7.4.0",
+    "node": ">=16.16.0"
+  },
+  "volta": {
+    "node": "16.16.0"
   }
 }
