@@ -21,11 +21,7 @@
   "dependencies": {
     "comlink": "^4.3.0"
   },
-  "engines": {
-    "pnpm": "7",
-    "node": "16"
-  },
   "volta": {
-    "node": "16.16.0"
+    "node": "24.14.0"
   }
 }
