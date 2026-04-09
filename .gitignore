@@ -2,5 +2,6 @@
 /dist/
 /build/
 /.svelte-kit/
+/.vercel/
 
 .DS_Store
