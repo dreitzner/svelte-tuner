@@ -1,13 +1,19 @@
 <script lang="ts">
-    export let isOn: boolean;
-    export let isFirst: boolean = false;
-    export let upright: boolean = false;
-    export let turnedLeft: boolean = false;
-    export let turnedRight: boolean = false;
+    let {
+        isOn,
+        isFirst = false,
+        upright = false,
+        turnedLeft = false,
+        turnedRight = false
+    }: {
+        isOn: boolean;
+        isFirst?: boolean;
+        upright?: boolean;
+        turnedLeft?: boolean;
+        turnedRight?: boolean;
+    } = $props();
 </script>
-<!--
-    wrap relative>absolute for tilted
--->
+
 <div
     class:isOn
     class:isFirst

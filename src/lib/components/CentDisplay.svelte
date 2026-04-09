@@ -1,7 +1,7 @@
-<script type="ts">
+<script lang="ts">
     import Cent from '$lib/components/Cent.svelte';
 
-    export let cent
+    let { cent }: { cent: number } = $props();
 </script>
 
 <div class="flex">

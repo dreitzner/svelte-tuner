@@ -1,14 +1,11 @@
-import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
-import { fileURLToPath, URL } from "url";
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [svelte()],
+  plugins: [sveltekit()],
   resolve: {
     alias: {
-      '$lib': fileURLToPath(new URL('./src/lib', import.meta.url)),
-      '$workers': fileURLToPath(new URL('./src/workers', import.meta.url)),
+      '$workers': './src/workers'
     }
   }
-})
+});

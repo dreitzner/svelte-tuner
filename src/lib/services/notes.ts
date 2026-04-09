@@ -19,7 +19,7 @@ const getNextNote = (frequency: number): number => frequency * Math.pow(2, 1/12)
 
 const getCent = (noteFrequency: number, measuredFrequency: number): number => 1200 * Math.log2(measuredFrequency / noteFrequency);
 
-export const getClosestNoteAndCent = (frequency: number): InoteAndCent => {
+export const getClosestNoteAndCent = (frequency: number): InoteAndCent | null => {
     if (!frequency) return null;
     let currentA = startFrequency;
     while (currentA < frequency) {

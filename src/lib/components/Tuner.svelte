@@ -8,21 +8,21 @@
   import CentDisplay from "./CentDisplay.svelte";
   import * as Comlink from "comlink";
 
-  let analyserNode: AnalyserNode = null;
-  let sampleRate: number;
-  let interval: number = null;
-  let worker: Worker;
-  let note: string;
-  let frequency: number;
-  let cent: number;
-  let calculateNote: Comlink.Remote<IcalcluteNote>;
-  let running: boolean;
-  let buttonActive: boolean;
+  let analyserNode: AnalyserNode | null = $state(null);
+  let sampleRate: number = $state(0);
+  let interval: ReturnType<typeof setInterval> | null = $state(null);
+  let worker: Worker | undefined = undefined;
+  let note: string = $state("");
+  let frequency: number = $state(0);
+  let cent: number = $state(0);
+  let calculateNote: Comlink.Remote<IcalcluteNote> | undefined = undefined;
+  let running: boolean = $state(false);
+  let buttonActive: boolean = $state(false);
 
   const analyse = async () => {
     if (running) return;
     if (!analyserNode) return;
-    if (!worker) return;
+    if (!calculateNote) return;
     const dataArray = getDataArray(analyserNode);
     if (!dataArray) return;
     running = true;
@@ -39,50 +39,41 @@
       buttonActive = false;
     }, 300);
     if (analyserNode) return reset();
-    ({ analyserNode, sampleRate } = await initUserAudio());
+    const result = await initUserAudio();
+    if (!result) return;
+    analyserNode = result.analyserNode;
+    sampleRate = result.sampleRate;
     await initWorker();
     interval = setInterval(analyse, 250);
   };
 
   const initWorker = async () => {
     if (worker) return;
-    const w = (await import('$workers/calculateNote.ts?worker')).default;
+    const w = (await import("../workers/calculateNote.ts?worker")).default;
     worker = new w();
-    const CalculateNote: Comlink.Remote<ICalculateNoteConstructur> = Comlink.wrap(
-      worker
-    );
+    const CalculateNote: Comlink.Remote<ICalculateNoteConstructur> =
+      Comlink.wrap(worker);
     calculateNote = await new CalculateNote();
   };
   const reset = () => {
     analyserNode = null;
     stopUserAudio();
-    clearInterval(interval);
+    if (interval) clearInterval(interval);
   };
 </script>
 
-
 <main class="flex">
-  <div class="brushedMetal" />
+  <div class="brushedMetal"></div>
 
-  <CentDisplay {cent}/>
-
-  <!-- <span>
-    We are
-    {#if cent}{cent}{:else}--{/if}
-    off
-  </span> -->
+  <CentDisplay {cent} />
 
   <SegmentDisplay {note} isOn={!!analyserNode} />
 
-  <!-- <span>
-    Frequency:
-    {#if frequency}{frequency}{:else}--{/if}
-  </span> -->
-
   <button
-    on:click={click}
+    onclick={click}
     class:active={buttonActive}
-    aria-label="{analyserNode ? 'start' : 'stop'} tuner" />
+    aria-label="{analyserNode ? 'stop' : 'start'} tuner"
+  ></button>
 </main>
 
 <style>
