@@ -1,9 +1,9 @@
 <script lang="ts">
     import {noteMapper} from '../services/noteMapper';
     import Segment from './Segment.svelte';
-    export let note: string = null;
-    export let isOn: boolean = false;
-    $: mappedNote = noteMapper(isOn ? note : null);
+
+    let { note = '', isOn = false }: { note?: string; isOn?: boolean } = $props();
+    let mappedNote = $derived(noteMapper(isOn ? note : null));
 </script>
 <div class="border">
     {#if mappedNote}

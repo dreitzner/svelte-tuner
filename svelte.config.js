@@ -1,7 +1,11 @@
-import sveltePreprocess from 'svelte-preprocess'
+import adapter from '@sveltejs/adapter-vercel';
 
-export default {
-  // Consult https://github.com/sveltejs/svelte-preprocess
-  // for more information about preprocessors
-  preprocess: sveltePreprocess()
-}
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  kit: {
+    adapter: adapter(),
+
+  }
+};
+
+export default config;

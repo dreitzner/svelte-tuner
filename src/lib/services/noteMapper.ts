@@ -19,20 +19,7 @@ interface ISegment {
 }
 
 interface ISegments {
-    'C': ISegment,
-    'C#': ISegment,
-    'D': ISegment,
-    'D#': ISegment,
-    'E': ISegment,
-    'F': ISegment,
-    'F#': ISegment,
-    'G': ISegment,
-    'G#': ISegment,
-    'A': ISegment,
-    'A#': ISegment,
-    'B': ISegment,
-    '0': ISegment,
-    'empty': ISegment,
+    [key: string]: ISegment,
 }
 
 const mapper: ISegments = {
@@ -164,7 +151,7 @@ const mapper: ISegments = {
     },
 };
 
-export const noteMapper = (note: string): ISegment => {
+export const noteMapper = (note: string | null): ISegment => {
 	return note === null
 		? mapper['empty']
 		: mapper[note] || mapper['0'];
